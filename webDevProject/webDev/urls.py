@@ -19,8 +19,9 @@ from django.urls import path, include
 from viewTwoApp import views
 
 urlpatterns = [
+    # path('viewTwoApp/', include('viewTwoApp.urls')),
+    # path('help/', views.help, name='help'),
     path('viewTwoApp/', include('viewTwoApp.urls')),
-    # path('help/', include('viewTwoApp.urls')),
-    path('help/', views.help, name='help'),
+    path('users/', views.users, name='users'),
     path('admin/', admin.site.urls),
 ]
