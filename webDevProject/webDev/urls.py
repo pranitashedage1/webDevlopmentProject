@@ -18,9 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 from viewTwoApp import views
 
+print("url1")
 urlpatterns = [
     # path('viewTwoApp/', include('viewTwoApp.urls')),
     # path('help/', views.help, name='help'),
+    
     path('viewTwoApp/', include('viewTwoApp.urls')),
     path('users/', views.users, name='users'),
     path('admin/', admin.site.urls),
