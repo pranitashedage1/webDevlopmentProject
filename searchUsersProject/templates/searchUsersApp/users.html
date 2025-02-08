@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Users Page</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h1>Users Page</h1>
+  <input type="text" id="search-box" placeholder="Search users..." autocomplete="off">
+  <ul id="user-list"></ul>
+
+  <script>
+    $(document).ready(function () {
+      $('#search-box').on('input', function () {
+        let query = $(this).val().trim();
+        if (query) {
+          $.ajax({
+            url: "/searchUsersApp/ajax_user_search/",
+            type: "GET",
+            data: { q: query },
+            success: function (data) {
+              $('#user-list').empty(); // Clear the list before adding new results
+              if (data.length > 0) {
+                data.forEach(function (user) {
+                  $('#user-list').append(`<li>${user.first_name} ${user.last_name} - ${user.email}</li>`);
+                });
+              } else {
+                $('#user-list').append('<li>No users found</li>');
+              }
+            },
+            error: function () {
+              $('#user-list').empty().append('<li>Error fetching users</li>');
+            }
+          });
+        } else {
+          $('#user-list').empty(); // Clear the list if input is empty
+        }
+      });
+    });
+  </script>
+</body>
+</html>
